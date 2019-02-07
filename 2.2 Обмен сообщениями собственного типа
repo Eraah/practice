@@ -1,0 +1,24 @@
+В файле, task.txt, лежащем в корневой директории, располагается имя типа сообщения, состав которого необходимо вывести в файл out.txt, расположить который требуется в корневой директории.
+
+box@74c08dfcd464: ~ $ open task.txt                                             
+bash: open: command not found                                                   
+box@74c08dfcd464: ~ $ cat task.txt                                              
+geometry_msgs/InertiaStamped                                                    
+box@74c08dfcd464: ~ $ rosmsg show geometry_msgs/InertiaStamped > out.txt        
+box@74c08dfcd464: ~ $ cat out.txt                                               
+std_msgs/Header header                                                          
+  uint32 seq                                                                    
+  time stamp                                                                    
+  string frame_id                                                               
+geometry_msgs/Inertia inertia                                                   
+  float64 m                                                                     
+  geometry_msgs/Vector3 com                                                     
+    float64 x                                                                   
+    float64 y                                                                   
+    float64 z                                                                   
+  float64 ixx                                                                   
+  float64 ixy                                                                   
+  float64 ixz                                                                   
+  float64 iyy                                                                   
+  float64 iyz                                                                   
+  float64 izz   
