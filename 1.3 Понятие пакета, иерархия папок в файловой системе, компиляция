@@ -1,0 +1,15 @@
+В корневой директории создайте папку с workspace-ом (название произвольно). Затем создайте один компилируемый с помощью catkin_make пакет (название произвольно).
+
+
+box@45c73ce55f26: ~ $ mkdir workspace/src                                       
+mkdir: cannot create directory 'workspace/src': No such file or directory       
+box@45c73ce55f26: ~ $ mkdir -p workspace/src                                    
+box@45c73ce55f26: ~ $ cd workspace/src                                          
+box@45c73ce55f26: ~/workspace/src $ catkin_init_workspace                       
+Creating symlink "/home/box/workspace/src/CMakeLists.txt" pointing to "/opt/ros/
+kinetic/share/catkin/cmake/toplevel.cmake"                                                     
+box@45c73ce55f26: ~/workspace/src $ catkin_create_pkg hello_world               
+Created file hello_world/CMakeLists.txt                                         
+Created file hello_world/package.xml                                            
+Successfully created files in /home/box/workspace/src/hello_world. Please adjust
+ the values in package.xml.         
