@@ -22,3 +22,90 @@ geometry_msgs/Inertia inertia
   float64 iyy                                                                   
   float64 iyz                                                                   
   float64 izz   
+
+
+Создайте workspace, содержащий пакет, в котором будет создано сообщение собственного типа (наполнение сообщения произвольно)
+
+box@65a972a60fba: ~ $ mkdir workspace                                           
+box@65a972a60fba: ~ $ ls      
+                                                  
+workspace                       
+                                             
+box@65a972a60fba: ~ $ cd workspace 
+box@65a972a60fba: ~/workspace $ mkdir src                                       
+box@65a972a60fba: ~/workspace $ cd src                                                                           
+box@65a972a60fba: ~/workspace/src $ catkin_create_pkg my_message       
+         
+Created file my_message/package.xml                                             
+Created file my_message/CMakeLists.txt                                          
+Successfully created files in /home/box/workspace/src/my_message. Please adjust 
+the values in package.xml.    
+                                                  
+box@65a972a60fba: ~/workspace/src $ cd my_message                               
+box@65a972a60fba: ~/workspace/src/my_message $ ls           
+                    
+CMakeLists.txt  package.xml       
+                                                                                                            
+box@65a972a60fba: ~/workspace/src/my_message $ nano CMakeLists.txt   # Редактирую файл, согласно требованиям
+box@65a972a60fba: ~/workspace/src/my_message $ ls        
+                       
+CMakeLists.txt  package.xml   
+                                                                                                                                        
+box@65a972a60fba: ~/workspace/src/my_message $ nano package.xml   # Редактирую файл, согласно требованиям
+box@65a972a60fba: ~/workspace/src/my_message $ mkdir msg                        
+box@65a972a60fba: ~/workspace/src/my_message $ cd msg                           
+box@65a972a60fba: ~/workspace/src/my_message/msg $ nano Message1.msg   # Задаю содержимое файла-сообщения         
+box@65a972a60fba: ~/workspace/src/my_message/msg $ cd                           
+box@65a972a60fba: ~ $ cd workspace 
+box@65a972a60fba: ~/workspace $ catkin_make     
+                                
+Base path: /home/box/workspace                                                  
+Source space: /home/box/workspace/src                                           
+Build space: /home/box/workspace/build                                          
+Devel space: /home/box/workspace/devel                                          
+Install space: /home/box/workspace/install                                      
+####                                                                            
+#### Running command: "make cmake_check_build_system" in "/home/box/workspace/bu
+ild"                                                                            
+####                                                                            
+####                                                                            
+#### Running command: "make -j2 -l2" in "/home/box/workspace/build"             
+####                                                                            
+[  0%] Built target std_msgs_generate_messages_lisp                             
+[  0%] Built target std_msgs_generate_messages_eus                              
+[  0%] Built target std_msgs_generate_messages_cpp                              
+[  0%] Built target _my_message_generate_messages_check_deps_Message1           
+[  0%] Built target std_msgs_generate_messages_nodejs                           
+[  0%] Built target std_msgs_generate_messages_py                               
+[ 28%] Generating EusLisp code from my_message/Message1.msg                     
+[ 42%] Built target my_message_generate_messages_eus                            
+[ 57%] Generating C++ code from my_message/Message1.msg                         
+[ 57%] Built target my_message_generate_messages_lisp                           
+[ 71%] Generating Javascript code from my_message/Message1.msg                  
+[ 71%] Built target my_message_generate_messages_nodejs                         
+[ 85%] Generating Python from MSG my_message/Message1                           
+[ 85%] Built target my_message_generate_messages_cpp                            
+[100%] Generating Python msg __init__.py for my_message                         
+[100%] Built target my_message_generate_messages_py                             
+[100%] Built target my_message_generate_messages   
+                             
+box@65a972a60fba: ~/workspace $ ls   # Далее проверяю тип переменных сообщения(для выполнения другого задания)
+                                           
+build  devel  src             
+                                                  
+box@65a972a60fba: ~/workspace $ cd devel                                        
+box@65a972a60fba: ~/workspace/devel $ ls     
+                                   
+_setup_util.py  env.sh  include  lib  setup.bash  setup.sh  setup.zsh  share    
+
+box@65a972a60fba: ~/workspace/devel $ cd include                                
+box@65a972a60fba: ~/workspace/devel/include $ ls    
+                            
+my_message   
+                                                                   
+box@65a972a60fba: ~/workspace/devel/include $ cd my_message                     
+box@65a972a60fba: ~/workspace/devel/include/my_message $ ls      
+               
+Message1.h      
+                                                                
+box@65a972a60fba: ~/workspace/devel/include/my_message $ nano Message1.h        
