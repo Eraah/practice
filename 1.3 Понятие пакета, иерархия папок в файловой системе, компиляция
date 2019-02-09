@@ -13,3 +13,36 @@ Created file hello_world/CMakeLists.txt
 Created file hello_world/package.xml                                            
 Successfully created files in /home/box/workspace/src/hello_world. Please adjust
  the values in package.xml.         
+
+
+В домашней директории находится пакет, расположенный в файловой системе некорректно. Исправьте ошибки так, чтобы сборка проходила успешно, а также нода в пакете успешно запускалась.
+
+
+box@dccc7cf01db3: ~/workspace $ mv logger src                                   
+box@dccc7cf01db3: ~/workspace $ ls                                              
+src                                                                             
+box@dccc7cf01db3: ~/workspace $ cd src                                          
+box@dccc7cf01db3: ~/workspace/src $ ls                                          
+package.xml  src                                                                
+box@dccc7cf01db3: ~/workspace/src $ mv src logger                               
+box@dccc7cf01db3: ~/workspace/src $ ls                                          
+logger  package.xml                                                             
+box@dccc7cf01db3: ~/workspace/src $ cd                                          
+box@dccc7cf01db3: ~ $ cd workspace                                              
+box@dccc7cf01db3: ~/workspace $ ls                                              
+src                                                                             
+box@dccc7cf01db3: ~/workspace $ cd src                                          
+box@dccc7cf01db3: ~/workspace/src $ ls                                          
+logger  package.xml                                                             
+box@dccc7cf01db3: ~/workspace/src $ mv package.xml logger                       
+box@dccc7cf01db3: ~/workspace/src $ ls                                          
+logger                                                                          
+box@dccc7cf01db3: ~/workspace/src $ cd logger                                   
+box@dccc7cf01db3: ~/workspace/src/logger $ ls                                   
+CMakeLists.txt  main.cpp  package.xml                                           
+box@dccc7cf01db3: ~/workspace/src/logger $ cd                                                                
+box@dccc7cf01db3: ~ $ cd workspace/src                                          
+box@dccc7cf01db3: ~/workspace/src $ cp logger/CMakeLists.txt /home/box/workspace
+/src                                                                            
+box@dccc7cf01db3: ~/workspace/src $ ls                                          
+CMakeLists.txt  logger     
