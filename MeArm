@@ -1,0 +1,79 @@
+#if (ARDUINO >= 100)
+ #include <Arduino.h>
+#else
+ #include <WProgram.h>
+#endif
+
+#include <Servo.h> 
+#include <ros.h>
+#include <std_msgs/UInt16.h>
+
+ros::NodeHandle  nh;
+
+Servo sBase;      // 3
+Servo sShoulder;  // 5 
+Servo sElbow;     // 6
+Servo sGripper;   // 9
+
+void sBase_cb( const std_msgs::UInt16& cmd_msg)
+{
+  sBase.write(cmd_msg.data); //set servo angle, should be from 0-180  
+  digitalWrite(13, HIGH-digitalRead(13));  //toggle led  
+}
+//
+void sShoulder_cb( const std_msgs::UInt16& cmd_msg)
+{
+  sShoulder.write(cmd_msg.data); //set servo angle, should be from 0-180  
+  digitalWrite(13, HIGH-digitalRead(13));  //toggle led  
+}
+//
+void sElbow_cb( const std_msgs::UInt16& cmd_msg)
+{
+  sElbow.write(cmd_msg.data); //set servo angle, should be from 0-180  
+  digitalWrite(13, HIGH-digitalRead(13));  //toggle led  
+}
+//
+void sGripper_cb( const std_msgs::UInt16& cmd_msg)
+{
+  sGripper.write(cmd_msg.data); //set servo angle, should be from 0-40  
+  digitalWrite(13, HIGH-digitalRead(13));  //toggle led  
+}
+//
+
+ros::Subscriber<std_msgs::UInt16> subBase("sBase", sBase_cb);
+ros::Subscriber<std_msgs::UInt16> subShoulder("sShoulder", sShoulder_cb);
+ros::Subscriber<std_msgs::UInt16> subElbow("sElbow", sElbow_cb);
+ros::Subscriber<std_msgs::UInt16> subGripper("sGripper", sGripper_cb);
+
+void setup()
+{
+  pinMode(13, OUTPUT);
+
+  nh.initNode();
+  nh.subscribe(subBase);
+  nh.subscribe(subShoulder);
+  nh.subscribe(subElbow);
+  nh.subscribe(subGripper);
+  
+  sBase.attach(3); //attach it to pin 3
+  sBase.write(90);
+  delay(250); 
+     
+  sShoulder.attach(5); //attach it to pin 5
+  sShoulder.write(90);
+  delay(250); 
+  
+  sElbow.attach(6); //attach it to pin 6
+  sElbow.write(90);
+  delay(250); 
+  
+  sGripper.attach(9); //attach it to pin 9
+  sGripper.write(5);
+  delay(250); 
+}
+
+void loop()
+{
+  nh.spinOnce();
+  delay(1);
+}
