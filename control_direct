@@ -1,0 +1,25 @@
+import rospy
+from std_msgs.msg import UInt16
+
+
+
+rospy.init_node('topic_publisher')
+
+
+while not rospy.is_shutdown():
+	c = raw_input('Input servo: \n Base - 1\n Shoulder - 2\n Elbow - 3\n Gripper - 4\n Exit - 0\n ')
+	if int(c) == 1:
+		pub = rospy.Publisher('sBase', UInt16, queue_size = 10)
+	elif int(c) == 2:	
+		pub = rospy.Publisher('sShoulder', UInt16, queue_size = 10)
+	elif int(c) == 3:	
+		pub = rospy.Publisher('sElbow', UInt16, queue_size = 10)
+	elif int(c) == 4:	
+		pub = rospy.Publisher('sGripper', UInt16, queue_size = 10)
+	elif int(c) == 0:	
+		break
+	else:
+		c = int(raw_input('Input servo: '))
+	
+	r = int(raw_input('Input angle: '))
+	pub.publish(r)
