@@ -1,0 +1,23 @@
+#публикует нажатые клавиши в топик
+
+
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import rospy
+from std_msgs.msg import String
+import sys
+import getch
+
+
+
+pub = rospy.Publisher('hello', String, queue_size=10)
+rospy.init_node('hello_topic_publisher')
+
+
+while not rospy.is_shutdown():
+   	pressedKey = getch.getch()
+	if pressedKey == 'q': break
+      	print ("Key Pressed:", ord(pressedKey))
+	#s = str(raw_input('Enter smth:  '))
+	pub.publish(pressedKey)
