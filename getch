@@ -1,4 +1,6 @@
 #функция для считывания нажатия клавиш
+
+
 def getch():
     #Returns a single character from standard input
     import tty, termios, sys
