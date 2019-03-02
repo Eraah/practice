@@ -1,0 +1,59 @@
+# программа для управления роботом-ман пулятором с помощью хоткеев без ввода необходимых сервомашинок
+
+#!//usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
+import rospy
+from std_msgs.msg import UInt16
+import sys
+import getch
+
+
+rospy.init_node('topic_publisher')
+
+pubB = rospy.Publisher('sBase', UInt16, queue_size = 10)
+pubS = rospy.Publisher('sShoulder', UInt16, queue_size = 10)
+pubE = rospy.Publisher('sElbow', UInt16, queue_size = 10)
+pubG = rospy.Publisher('sGripper', UInt16, queue_size = 10)
+
+s = 115
+b = 115
+e = 115
+g = 5
+
+while not rospy.is_shutdown():
+
+
+	pressedKey = getch.getch()
+	if pressedKey == 'a' and b+5<=180: 
+		b = b+5
+		pubB.publish(b)
+	if pressedKey == 'd' and b-5>=50: 
+		b = b-5
+		pubB.publish(b)
+
+	if pressedKey == 'w' and s+5<=180: 
+		s = s+5
+		pubS.publish(s)
+	if pressedKey == 's' and s-5>=75: 
+		s = s-5
+		pubS.publish(s)
+
+	if pressedKey == 'i' and e+5<=165: 
+		e = e+5
+		pubE.publish(e)
+	if pressedKey == 'k' and e-5>=50: 
+		e = e-5
+		pubE.publish(e)
+
+	if pressedKey == 'l' and g+5<=50: 
+		g = g+5
+		pubG.publish(g)
+	if pressedKey == 'j' and g-5>=0: 
+		g = g-5
+		pubG.publish(g)
+
+
+	if pressedKey == 'q': break
+	
