@@ -14,38 +14,45 @@ import getch
 rospy.init_node('topic_publisher')
 
 
-r = 90
+
 while not rospy.is_shutdown():
 	c = raw_input('Input servo: \n Base - 1\n Shoulder - 2\n Elbow - 3\n Gripper - 4\n Exit - 0\n ')
 	if int(c) == 1:
 		pub = rospy.Publisher('sBase', UInt16, queue_size = 10)
+		r = 115
 		while True:
+			
    			pressedKey = getch.getch()
 			if pressedKey == 'd' and r+5<=180: r = r+5
-			if pressedKey == 'a' and r-5>=0: r = r-5
+			if pressedKey == 'a' and r-5>=50: r = r-5
 			if pressedKey == 'q': break
 			pub.publish(r)
 	elif int(c) == 2:	
 		pub = rospy.Publisher('sShoulder', UInt16, queue_size = 10)
+		r = 130
 		while True:
+			
    			pressedKey = getch.getch()
 			if pressedKey == 'w' and r+5<=180: r = r+5
-			if pressedKey == 's' and r-5>=0: r = r-5
+			if pressedKey == 's' and r-5>=75: r = r-5
 			if pressedKey == 'q': break
 			pub.publish(r)
 	elif int(c) == 3:	
 		pub = rospy.Publisher('sElbow', UInt16, queue_size = 10)
+		r = 115
 		while True:
+			
    			pressedKey = getch.getch()
-			if pressedKey == 'i' and r+5<=180: r = r+5
-			if pressedKey == 'k' and r-5>=0: r = r-5
+			if pressedKey == 'i' and r+5<=155: r = r+5
+			if pressedKey == 'k' and r-5>=100: r = r-5
 			if pressedKey == 'q': break
 			pub.publish(r)
 	elif int(c) == 4:	
 		pub = rospy.Publisher('sGripper', UInt16, queue_size = 10)
+		r = 5
 		while True:
    			pressedKey = getch.getch()
-			if pressedKey == 'l' and r+5<=180: r = r+5
+			if pressedKey == 'l' and r+5<=50: r = r+5
 			if pressedKey == 'j' and r-5>=0: r = r-5
 			if pressedKey == 'q': break
 			pub.publish(r)
@@ -53,4 +60,6 @@ while not rospy.is_shutdown():
 		break
 	else:
 		c = int(raw_input('Input servo: '))
+
+
 
